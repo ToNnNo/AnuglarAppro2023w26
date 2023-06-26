@@ -3,7 +3,7 @@
 <form *ngIf="!this.state; else blockLogout">
   <div class="mb-3">
     <label for="username">Username:</label>
-    <input type="text" id="username" class="form-control" />
+    <input type="text" id="username" class="form-control" #username /> <!-- #name = variable de template -->
   </div>
   <div class="mb-3">
     <label for="password">Password:</label>
