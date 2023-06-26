@@ -2,3 +2,23 @@
 
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium aliquid asperiores consectetur culpa, cum
   cupiditate distinctio ducimus et in ipsum minus nisi odio porro quia reiciendis sapiente temporibus totam?</p>
+
+<h3>Créer un module</h3>
+
+<p>ng g m [name] --module=[parent Module] --routing --routing-scope=Child --route=[route name]</p>
+
+<dl>
+  <dt>--module</dt>
+  <dd>The declaring NgModule.</dd>
+  <dt>--routing</dt>
+  <dd>Create a routing module.</dd>
+  <dt>--routing-scope</dt>
+  <dd>The scope for the new routing module.</dd>
+  <dt>--route</dt>
+  <dd>The route path for a lazy-loaded module. When supplied, creates a component in the new module, and adds the route to that component in the
+    `Routes` array declared in the module provided in the `--module` option.</dd>
+</dl>
+
+<h3>Créer un composant pour un module</h3>
+
+<p>ng g c [path + component name] --module=[module name]</p>

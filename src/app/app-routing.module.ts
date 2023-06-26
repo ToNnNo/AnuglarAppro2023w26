@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "private", component: PrivateComponent, canActivate: [() => true, secureRouteGuard] },
   { path: "login", component: AuthenticationComponent },
+  { path: 'decorator', loadChildren: () => import('./decorator/decorator.module').then(m => m.DecoratorModule) }, // lazy loading
 ];
 
 @NgModule({
