@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { DecoratorComponent } from './decorator.component';
 import { ContentChildComponent } from "./components/content-child/content-child.component";
 import { InputComponent } from "./components/input/input.component";
+import { OutputComponent } from "./components/output/output.component";
 
 const routes: Routes = [
   // path: decorator
   { path: '', component: DecoratorComponent, children: [
       { path: 'content-child', component: ContentChildComponent },
       { path: 'input', component: InputComponent },
+      { path: 'output', component: OutputComponent },
       { path: '', redirectTo: '/decorator/content-child', pathMatch: 'full' }
     ]
   }

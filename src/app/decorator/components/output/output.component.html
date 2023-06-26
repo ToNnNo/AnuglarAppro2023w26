@@ -1,0 +1,10 @@
+<h3>Output</h3>
+
+<app-quote [quote]="quote!" *ngIf="quote; else blockNoQuote"></app-quote>
+
+<ng-template #blockNoQuote>
+  <p>Aucune Citation</p>
+</ng-template>
+
+<app-output-child (quoteEvent)="quote = $event"></app-output-child>
+<button class="btn btn-outline-secondary ms-1" (click)="reset()">Réinitialiser</button>

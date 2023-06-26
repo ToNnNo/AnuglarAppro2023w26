@@ -7,6 +7,8 @@ import { ContentChildComponent } from './components/content-child/content-child.
 import { AlertComponent } from './components/alert/alert.component';
 import { InputComponent } from './components/input/input.component';
 import { QuoteComponent } from './components/quote/quote.component';
+import { OutputComponent } from './components/output/output.component';
+import { OutputChildComponent } from './components/output-child/output-child.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { QuoteComponent } from './components/quote/quote.component';
     ContentChildComponent,
     AlertComponent,
     InputComponent,
-    QuoteComponent
+    QuoteComponent,
+    OutputComponent,
+    OutputChildComponent
   ],
   imports: [
     CommonModule,
