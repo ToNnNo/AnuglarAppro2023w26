@@ -12,6 +12,7 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { ObservableComponent } from './components/observable/observable.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { QuoteComponent } from './components/quote/quote.component';
 
 @NgModule({
   declarations: [ // composant (view/controller), directive (view), pipe (filtre)
@@ -21,7 +22,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     AuthenticationComponent,
     ObservableComponent,
     UsersComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    QuoteComponent
   ],
   imports: [ // module (liste de fonction)
     BrowserModule,

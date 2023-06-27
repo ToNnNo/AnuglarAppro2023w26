@@ -12,18 +12,21 @@ import { OutputChildComponent } from './components/output-child/output-child.com
 
 
 @NgModule({
-  declarations: [
-    DecoratorComponent,
-    ContentChildComponent,
-    AlertComponent,
-    InputComponent,
-    QuoteComponent,
-    OutputComponent,
-    OutputChildComponent
-  ],
-  imports: [
-    CommonModule,
-    DecoratorRoutingModule
-  ]
+    declarations: [
+        DecoratorComponent,
+        ContentChildComponent,
+        AlertComponent,
+        InputComponent,
+        QuoteComponent,
+        OutputComponent,
+        OutputChildComponent
+    ],
+    exports: [
+        QuoteComponent
+    ],
+    imports: [
+        CommonModule,
+        DecoratorRoutingModule
+    ]
 })
 export class DecoratorModule { }
