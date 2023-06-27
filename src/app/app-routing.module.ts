@@ -5,9 +5,11 @@ import { PrivateComponent } from "./components/private/private.component";
 import { secureRouteGuard } from "./guards/secure-route.guard";
 import { AuthenticationComponent } from "./components/authentication/authentication.component";
 import { CustomPreloadService } from "./service/preload/custom-preload.service";
+import { ObservableComponent } from "./components/observable/observable.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
+  { path: "observable", component: ObservableComponent },
   { path: "private", component: PrivateComponent, canActivate: [() => true, secureRouteGuard] },
   { path: "login", component: AuthenticationComponent },
   { path: 'decorator', data: { 'preload': false }, loadChildren: () => import('./decorator/decorator.module').then(m => m.DecoratorModule) }, // lazy loading

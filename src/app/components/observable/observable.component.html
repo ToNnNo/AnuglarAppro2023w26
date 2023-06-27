@@ -1,0 +1,15 @@
+<h2>Les Observables</h2>
+
+<p>{{ value }}</p>
+
+<button class="btn btn-outline-secondary" (click)="displayNumbers()" [disabled]="disabled">Afficher les valeurs</button>
+
+<hr />
+
+<h3>Subject</h3>
+
+<p>{{ valueSubject }}</p>
+
+<h3>Behavior Subject</h3>
+
+<p>{{ valueBehaviorSubject$ | async }}</p>
