@@ -19,3 +19,9 @@
     <p class="small text-center">Angular Appro - FOAD BNP - Juin 2023</p>
   </footer>
 </div>
+
+<div *ngIf="waiting" class="position-absolute start-0 top-0 h-100 w-100 d-flex justify-content-center align-items-center bg-body-tertiary opacity-50">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
