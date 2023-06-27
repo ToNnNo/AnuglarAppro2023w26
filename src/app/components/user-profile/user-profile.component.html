@@ -1,0 +1,4 @@
+<section class="text-end" *ngIf="user">
+  Bonjour {{ user.grade }} {{ user.lastname }}
+  <button class="btn btn-sm btn-outline-dark" (click)="logout()">Déconnexion</button>
+</section>

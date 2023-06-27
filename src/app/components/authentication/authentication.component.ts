@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthenticatorService } from "../../security/authenticator.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-authentication',
@@ -17,9 +18,18 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
   // derrière une variable le ? signifie que la variable peut être undefined
   // derrière une variable le ! signifie que la variable doit être du type et non null
 
+  form = new FormGroup({
+    username: new FormControl('admin', [Validators.required]),
+    password: new FormControl('admin', [Validators.required])
+  });
+
   constructor(private authenticator: AuthenticatorService) { }
 
   ngOnInit() {
+    this.authenticator.state.subscribe( state => {
+      this.state = state;
+    });
+
     this.state = this.authenticator.isAuthenticate();
   }
 
@@ -28,11 +38,14 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
   }
 
   public authenticate(): void {
-    this.state = this.authenticator.login();
+    if( this.form.valid ) {
+      const { username, password } = this.form.getRawValue();
+      this.authenticator.login(username!, password!);
+    }
   }
 
   public logout(): void {
-    this.state = this.authenticator.logout();
+    this.authenticator.logout();
   }
 
 }

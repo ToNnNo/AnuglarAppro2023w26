@@ -1,3 +1,4 @@
 export const environment = {
-  'placeholderUrlApi': 'https://jsonplaceholder.typicode.com'
+  'placeholderUrlApi': 'https://jsonplaceholder.typicode.com',
+  'staticUrlApi': 'http://localhost:3200'
 };

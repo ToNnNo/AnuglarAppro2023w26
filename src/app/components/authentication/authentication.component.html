@@ -1,15 +1,22 @@
 <h2>Authentication</h2>
 
-<form *ngIf="!this.state; else blockLogout">
+<form *ngIf="!this.state; else blockLogout" [formGroup]="form" (ngSubmit)="authenticate()">
   <div class="mb-3">
     <label for="username">Username:</label>
-    <input type="text" id="username" class="form-control" #username /> <!-- #name = variable de template -->
+    <input type="text" id="username" class="form-control" #username [formControl]="form.controls.username" /> <!-- #name = variable de template -->
+    <p *ngIf="form.get('username')?.touched && form.get('username')?.hasError('required')" class="text-danger">
+      Ce champs est obligatoire
+    </p>
   </div>
   <div class="mb-3">
     <label for="password">Password:</label>
-    <input type="password" id="password" class="form-control" />
+    <input type="password" id="password" class="form-control" formControlName="password" />
+    <p *ngIf="form.get('password')?.touched && form.get('password')?.hasError('required')" class="text-danger">
+      Ce champs est obligatoire
+    </p>
   </div>
-  <button class="btn btn-outline-primary" (click)="authenticate()">Se connecter</button>
+  <!--button class="btn btn-outline-primary" (click)="authenticate()">Se connecter</button-->
+  <button class="btn btn-outline-primary">Se connecter</button>
 </form>
 
 <ng-template #blockLogout>
