@@ -1,5 +1,5 @@
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
@@ -44,6 +44,7 @@ registerLocaleData(de);
     ReactiveFormsModule
   ],
   providers: [ // services globale
+    provideClientHydration(),
     { provide: LOCALE_ID, useValue: 'fr' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticateInterceptor, multi: true },

@@ -1,0 +1,11 @@
+ng add @nguniversal/express-engine
+
+Si erreur au moment de l'installation:
+
+- Remove the package node-modules
+- Remove the file package-lock.json
+- Run the command "npm install"
+- Run this command "npm install @nguniversal/express-engine --legacy-peer-deps"
+    If the package "@nguniversal/express-engine" will be installed, without creating files "server.ts" and
+    "app.server.module.ts", then
+- Run the command "ng add @nguniversal/express-engine"

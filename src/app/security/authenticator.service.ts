@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { AuthenticationResponse } from "../interface/authentication-response.interface";
 import { KeyStorage } from "../enum/key-storage";
 import { BehaviorSubject } from "rxjs";
 import { AuthenticateUser } from "../interface/authenticate-user";
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,17 @@ export class AuthenticatorService {
 
   state = new BehaviorSubject<boolean>(false);
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private httpClient: HttpClient) { }
 
   public login(username: string, password: string): void {
     this.httpClient.post<AuthenticationResponse>(`${environment.staticUrlApi}/authentication`, { username, password }).subscribe( {
 
       next: response => {
-        localStorage.setItem(KeyStorage.TOKEN, response.token);
-        localStorage.setItem(KeyStorage.USER, JSON.stringify(response.user));
-        this.state.next(true);
+        if(isPlatformBrowser(this.platformId)) {
+          localStorage.setItem(KeyStorage.TOKEN, response.token);
+          localStorage.setItem(KeyStorage.USER, JSON.stringify(response.user));
+          this.state.next(true);
+        }
       },
       error: response => {
         const error = response.error;
@@ -31,9 +34,11 @@ export class AuthenticatorService {
   }
 
   public logout(): void {
-    localStorage.removeItem(KeyStorage.TOKEN);
-    localStorage.removeItem(KeyStorage.USER);
-    this.state.next(false);
+    if(isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(KeyStorage.TOKEN);
+      localStorage.removeItem(KeyStorage.USER);
+      this.state.next(false);
+    }
   }
 
   public isAuthenticate(): boolean {
@@ -51,15 +56,26 @@ export class AuthenticatorService {
   }
 
   public getToken(): string|null {
-    return localStorage.getItem(KeyStorage.TOKEN);
+    if(isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(KeyStorage.TOKEN);
+    }
+
+    return null;
   }
 
-  public getUser(): AuthenticateUser {
-    return this.state ? JSON.parse(localStorage.getItem(KeyStorage.USER)!) : {};
+  public getUser(): AuthenticateUser|undefined {
+    if(isPlatformBrowser(this.platformId)) {
+      return this.state ? JSON.parse(localStorage.getItem(KeyStorage.USER)!) : undefined;
+    }
+
+    return undefined;
   }
 
   public hasToken(): boolean {
-    return localStorage.getItem(KeyStorage.TOKEN) != null;
+    if(isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(KeyStorage.TOKEN) != null;
+    }
+    return false;
   }
 
   private tokenIsFresh(): boolean {
@@ -73,9 +89,12 @@ export class AuthenticatorService {
     const token = this.getToken();
 
     const payload = token?.split('.')[1];
-    const data = JSON.parse(window.atob(payload!));
+    if(isPlatformBrowser(this.platformId)) {
+      const data = JSON.parse(window.atob(payload!));
+      return data.exp;
+    }
 
-    return data.exp;
+    return 0
   }
 
 }
