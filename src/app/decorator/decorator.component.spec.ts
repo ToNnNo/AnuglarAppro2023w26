@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DecoratorComponent } from './decorator.component';
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe('DecoratorComponent', () => {
   let component: DecoratorComponent;
@@ -8,6 +9,7 @@ describe('DecoratorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [DecoratorComponent]
     });
     fixture = TestBed.createComponent(DecoratorComponent);

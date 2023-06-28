@@ -21,8 +21,8 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
   // derrière une variable le ! signifie que la variable doit être du type et non null
 
   form = new FormGroup({
-    username: new FormControl('admin', [Validators.required]),
-    password: new FormControl('admin', [Validators.required])
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
   });
 
   constructor(private authenticator: AuthenticatorService) { }

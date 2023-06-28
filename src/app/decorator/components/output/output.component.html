@@ -3,7 +3,7 @@
 <app-quote [quote]="quote!" *ngIf="quote; else blockNoQuote"></app-quote>
 
 <ng-template #blockNoQuote>
-  <p>Aucune Citation</p>
+  <p>Aucune citation</p>
 </ng-template>
 
 <app-output-child (quoteEvent)="quote = $event"></app-output-child>

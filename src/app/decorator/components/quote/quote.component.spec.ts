@@ -12,7 +12,9 @@ describe('QuoteComponent', () => {
     });
     fixture = TestBed.createComponent(QuoteComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    component.quote = { quote: 'test', author: 'test', source: 'test' }
+
+    fixture.detectChanges(); // permet de mettre la vue pour les tests
   });
 
   it('should create', () => {

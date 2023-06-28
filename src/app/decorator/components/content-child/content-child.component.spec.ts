@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContentChildComponent } from './content-child.component';
+import { AlertComponent } from "../alert/alert.component";
 
 describe('ContentChildComponent', () => {
   let component: ContentChildComponent;
@@ -8,7 +9,7 @@ describe('ContentChildComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ContentChildComponent]
+      declarations: [ContentChildComponent, AlertComponent]
     });
     fixture = TestBed.createComponent(ContentChildComponent);
     component = fixture.componentInstance;
