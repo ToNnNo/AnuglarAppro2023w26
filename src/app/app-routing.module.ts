@@ -9,6 +9,7 @@ import { ObservableComponent } from "./components/observable/observable.componen
 import { UsersComponent } from "./components/users/users.component";
 import { userResolver } from "./resolver/user.resolver";
 import { QuoteComponent } from "./components/quote/quote.component";
+import { ProductComponent } from "./components/product/product.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'decorator', data: { 'preload': false }, loadChildren: () => import('./decorator/decorator.module').then(m => m.DecoratorModule) }, // lazy loading
   { path: "users", component: UsersComponent, resolve: { 'users': userResolver } },
   { path: "quotes", component: QuoteComponent, canActivate: [() => true, secureRouteGuard] },
+  { path: "products", component: ProductComponent },
 ];
 
 @NgModule({

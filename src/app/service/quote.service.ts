@@ -14,15 +14,15 @@ export class QuoteService {
 
   public findAll(): Observable<Quote> {
 
-    const httpOptions = {
+    /*const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         Authorization: `Bearer ${this.authenticator.getToken()}`
       })
-    };
+    };*/
 
     // es6 { variable } = { variableName: variableValue }
-    return this.httpClient.get<any>(`${environment.staticUrlApi}/quote`, httpOptions).pipe(
+    return this.httpClient.get<any>(`${environment.staticUrlApi}/quote`/*, httpOptions*/).pipe(
       map( quote => {
         return { quote: quote.citation, author: quote.auteur }
       })
