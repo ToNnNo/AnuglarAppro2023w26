@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { QuoteService } from "../../service/quote.service";
-import { Observable } from "rxjs";
 import { Quote } from "../../interface/quote.interface";
 
 @Component({
@@ -10,13 +9,13 @@ import { Quote } from "../../interface/quote.interface";
 })
 export class QuoteComponent implements OnInit {
 
-  quote?: Quote;
+  citation?: Quote;
 
   constructor(private quoteService: QuoteService) { }
 
   ngOnInit() {
     this.quoteService.findAll().subscribe( quote => {
-      this.quote = quote;
+      this.citation = quote;
     })
   }
 
