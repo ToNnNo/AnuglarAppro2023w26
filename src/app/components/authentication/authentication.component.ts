@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthenticatorService } from "../../security/authenticator.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthenticateUser } from "../../interface/authenticate-user";
 
 @Component({
   selector: 'app-authentication',
@@ -10,10 +11,11 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 export class AuthenticationComponent implements OnInit, AfterViewInit {
 
   state: boolean = false
+  user?: AuthenticateUser;
 
   // { static: false } -> les composants enfants ne sont pas accessibles dans le ngOnInit
   // { static: true } -> les composants enfants sont accessibles dans le ngOnInit
-  @ViewChild('username', { static: false }) inputUsername!: ElementRef;
+  @ViewChild('username', { static: false }) inputUsername?: ElementRef;
 
   // derrière une variable le ? signifie que la variable peut être undefined
   // derrière une variable le ! signifie que la variable doit être du type et non null
@@ -28,13 +30,14 @@ export class AuthenticationComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.authenticator.state.subscribe( state => {
       this.state = state;
+      this.user = this.authenticator.getUser();
     });
 
     this.state = this.authenticator.isAuthenticate();
   }
 
   ngAfterViewInit() {
-    this.inputUsername.nativeElement.focus();
+    this.inputUsername?.nativeElement.focus();
   }
 
   public authenticate(): void {

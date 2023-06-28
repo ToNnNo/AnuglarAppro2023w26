@@ -20,6 +20,6 @@
 </form>
 
 <ng-template #blockLogout>
-  <p>Bienvenue Stéphane</p>
+  <p>Bienvenue {{ user?.grade}} {{ user?.lastname }}</p>
   <button class="btn btn-outline-warning" (click)="logout()">Déconnexion</button>
 </ng-template>

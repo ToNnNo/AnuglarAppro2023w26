@@ -37,7 +37,17 @@ export class AuthenticatorService {
   }
 
   public isAuthenticate(): boolean {
-    return localStorage.getItem(KeyStorage.TOKEN) != null;
+    if(!this.hasToken()) {
+      return false;
+    }
+
+    if(!this.tokenIsFresh()) {
+      this.logout();
+      alert(`Session expirée`);
+      return false;
+    }
+
+    return true;
   }
 
   public getToken(): string|null {
@@ -48,4 +58,26 @@ export class AuthenticatorService {
     return this.state ? JSON.parse(localStorage.getItem(KeyStorage.USER)!) : {};
   }
 
+  public hasToken(): boolean {
+    return localStorage.getItem(KeyStorage.TOKEN) != null;
+  }
+
+  private tokenIsFresh(): boolean {
+    const timestamp = Math.floor(Date.now() / 1000);
+    const expiration = this.getTokenExpire();
+
+    return expiration > timestamp;
+  }
+
+  private getTokenExpire(): number {
+    const token = this.getToken();
+
+    const payload = token?.split('.')[1];
+    const data = JSON.parse(window.atob(payload!));
+
+    return data.exp;
+  }
+
 }
+
+
